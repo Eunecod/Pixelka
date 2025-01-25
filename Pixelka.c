@@ -1,9 +1,11 @@
+#define __AVR_ATmega328P__
+#define F_CPU 16000000UL
+#define BAUD 9600
+
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define F_CPU 16000000UL
-#define BAUD 9600
-#define MYUBRR F_CPU/16/BAUD-1
+#define UBRR (F_CPU / 16 / BAUD - 1)
 
 
 void USART_Init(unsigned int ubrr) {
@@ -25,7 +27,7 @@ void USART_SendString(const char* str) {
 }
 
 int main() {
-    USART_Init(MYUBRR);
+    USART_Init(UBRR);
     USART_SendString("Hello, Arduino!\r\n");
 
     return 0;
