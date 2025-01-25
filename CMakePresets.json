@@ -2,14 +2,14 @@
   "version": 3,
   "configurePresets": [
     {
+      "name": "avr-debug",
+      "hidden": false,
+      "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
         "CMAKE_BUILD_TYPE": "Debug"
-      },
-      "generator": "Ninja",
-      "hidden": false,
-      "name": "avr-debug"
+      }
     },
     {
       "name": "avr-release",
