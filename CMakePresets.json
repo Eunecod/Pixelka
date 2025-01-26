@@ -3,11 +3,12 @@
   "configurePresets": [
     {
       "name": "avr-debug",
-      "hidden": true,
+      "hidden": false,
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "avr-gcc",
+        "CMAKE_C_STANDARD": "99",
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_FLAGS": "-Os -Wall -Wextra"
@@ -20,6 +21,7 @@
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "avr-gcc",
+        "CMAKE_C_STANDARD": "99",
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_FLAGS": "-Os -Wall -Wextra"

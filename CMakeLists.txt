@@ -3,6 +3,7 @@ project("Pixelka" LANGUAGES C)
 
 
 add_executable(${PROJECT_NAME}.elf "Pixelka.c")
+target_sources(${PROJECT_NAME}.elf PUBLIC source)
 target_include_directories(${PROJECT_NAME}.elf PUBLIC include)
 
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
@@ -15,3 +16,9 @@ add_custom_target(UPLOAD ALL
     DEPENDS ${PROJECT_NAME}.elf
     COMMENT "Загрузка прошивки на Arduino"
 )
+
+target_compile_definitions(${PROJECT_NAME}.elf PUBLIC
+    __AVR_ATmega328P__
+    F_CPU=16000000UL
+)
+

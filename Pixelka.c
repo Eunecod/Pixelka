@@ -1,10 +1,7 @@
-#define __AVR_ATmega328P__
-#define F_CPU 16000000UL
-#define BAUD 9600
-
 #include <avr/io.h>
 #include <util/delay.h>
 
+#define BAUD 9600
 #define UBRR (F_CPU / 16 / BAUD - 1)
 
 
