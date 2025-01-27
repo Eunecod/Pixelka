@@ -5,13 +5,12 @@
 #include <util/twi.h>
 #include <util/delay.h>
 
-#define SLAVE_ADDRESS 0x33
 
 typedef struct {
     uint8_t slave_address;
 } I2C_Device;
 
-void I2C_Init(I2C_Device* device);
+void I2C_Init(I2C_Device* device, uint8_t slave_address);
 
 void I2C_Start(void);
 

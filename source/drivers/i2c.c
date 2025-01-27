@@ -1,9 +1,9 @@
 #include <drivers/i2c.h>
 
-void I2C_Init(I2C_Device* device) {
+void I2C_Init(I2C_Device* device, uint8_t slave_address) {
     TWSR = 0;
     TWBR = 32;
-    device->slave_address = SLAVE_ADDRESS;
+    device->slave_address = slave_address;
 }
 
 void I2C_Start(void) {
