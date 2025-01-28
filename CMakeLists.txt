@@ -12,6 +12,7 @@ add_executable(${PROJECT_NAME}.elf "Pixelka.c")
 target_include_directories(${PROJECT_NAME}.elf PUBLIC include)
 target_sources_directories(${PROJECT_NAME}.elf "source/drivers")
 target_sources_directories(${PROJECT_NAME}.elf "source/device")
+target_sources_directories(${PROJECT_NAME}.elf "source/util")
 
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
     COMMAND avr-objcopy -O ihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${PROJECT_NAME}.hex
