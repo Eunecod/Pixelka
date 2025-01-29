@@ -14,6 +14,9 @@ target_sources_directories(${PROJECT_NAME}.elf "source/drivers")
 target_sources_directories(${PROJECT_NAME}.elf "source/device")
 target_sources_directories(${PROJECT_NAME}.elf "source/util")
 
+target_include_directories(${PROJECT_NAME}.elf PUBLIC lib)
+target_sources_directories(${PROJECT_NAME}.elf "lib")
+
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
     COMMAND avr-objcopy -O ihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${PROJECT_NAME}.hex
     COMMENT "Создание .hex файла"
