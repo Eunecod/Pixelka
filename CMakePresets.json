@@ -8,17 +8,13 @@
       "binaryDir": "${sourceDir}/build",
       "installDir": "${sourceDir}/install",
       "cacheVariables": {
-        "CMAKE_C_COMPILER":       "avr-gcc.exe",
-        "CMAKE_CXX_COMPILER":     "avr-g++.exe",
-        "AVRDUDE_PORT":           "COM5",
-        "AVRDUDE_BAUD":           "57600",
-        "AVRDUDE_CONTROLER":      "m328p",
-        "AVRDUDE_LOADER":         "arduino"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
+        "CMAKE_SYSTEM_NAME": "Generic",
+        "CMAKE_C_COMPILER": "avr-gcc.exe",
+        "CMAKE_CXX_COMPILER": "avr-g++.exe",
+        "AVRDUDE_PORT": "COM5",
+        "AVRDUDE_BAUD": "57600",
+        "AVRDUDE_CONTROLER": "m328p",
+        "AVRDUDE_LOADER": "arduino"
       }
     },
     {
@@ -27,8 +23,7 @@
       "inherits": "avr-base",
       "hidden": false,
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_FLAGS": "-Os -Wall -Wextra"
+        "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
@@ -37,8 +32,7 @@
       "inherits": "avr-base",
       "hidden": false,
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_C_FLAGS": "-Os -Wall -Wextra"
+        "CMAKE_BUILD_TYPE": "Release"
       }
     }
   ]
