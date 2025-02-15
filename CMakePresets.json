@@ -2,27 +2,41 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "avr-debug",
-      "hidden": false,
+      "name": "avr-base",
+      "hidden": true,
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "avr-gcc",
-        "CMAKE_C_STANDARD": "99",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
+        "CMAKE_C_COMPILER":       "avr-gcc.exe",
+        "CMAKE_CXX_COMPILER":     "avr-g++.exe",
+        "AVRDUDE_PORT":           "COM5",
+        "AVRDUDE_BAUD":           "57600",
+        "AVRDUDE_CONTROLER":      "m328p",
+        "AVRDUDE_LOADER":         "arduino"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Debug",
+      "displayName": "x64 Debug",
+      "inherits": "avr-base",
+      "hidden": false,
+      "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_FLAGS": "-Os -Wall -Wextra"
       }
     },
     {
-      "name": "avr-release",
+      "name": "Release",
+      "displayName": "x64 Release",
+      "inherits": "avr-base",
       "hidden": false,
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "avr-gcc",
-        "CMAKE_C_STANDARD": "99",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_FLAGS": "-Os -Wall -Wextra"
       }

@@ -1,6 +1,0 @@
-set(CMAKE_SYSTEM_NAME Generic)
-
-set(AVRDUDE_PORT		"COM5")
-set(AVRDUDE_BAUD		"57600")
-set(AVRDUDE_CONTROLER	"m328p")
-set(AVRDUDE_LOADER		"arduino")

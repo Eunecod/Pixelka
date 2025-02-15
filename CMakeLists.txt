@@ -1,35 +1,29 @@
 ﻿cmake_minimum_required(VERSION 3.15)
-project("Pixelka" LANGUAGES C)
+project("Pixelka" LANGUAGES CXX)
 
-function(target_sources_directories target directories)
-    file(GLOB_RECURSE files "${directories}/*.c")
-    target_sources(${target} PRIVATE ${files})
-endfunction()
+#function(target_sources_directories target directories)
+#    file(GLOB_RECURSE files "${directories}/*.cpp")
+#    target_sources(${target} PRIVATE ${files})
+#endfunction()
+#
+#
+#set(AVR_DEFINITIONS
+#    "__AVR_ATmega328P__"
+#    "F_CPU=16000000UL"
+#)
+
+add_executable(${PROJECT_NAME}.elf "Pixelka.cpp")
 
 
-
-add_executable(${PROJECT_NAME}.elf "Pixelka.c")
-target_include_directories(${PROJECT_NAME}.elf PUBLIC include)
-target_sources_directories(${PROJECT_NAME}.elf "source/drivers")
-target_sources_directories(${PROJECT_NAME}.elf "source/device")
-target_sources_directories(${PROJECT_NAME}.elf "source/util")
-
-target_include_directories(${PROJECT_NAME}.elf PUBLIC lib)
-target_sources_directories(${PROJECT_NAME}.elf "lib")
-
-add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
-    COMMAND avr-objcopy -O ihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${PROJECT_NAME}.hex
-    COMMENT "Создание .hex файла"
-)
-
-add_custom_target(UPLOAD ALL
-    COMMAND avrdude -c ${AVRDUDE_LOADER} -p ${AVRDUDE_CONTROLER} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -U flash:w:${PROJECT_NAME}.hex:i
-    DEPENDS ${PROJECT_NAME}.elf
-    COMMENT "Загрузка прошивки на Arduino"
-)
-
-target_compile_definitions(${PROJECT_NAME}.elf PUBLIC
-    __AVR_ATmega328P__
-    F_CPU=16000000UL
-)
-
+#add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
+#    COMMAND avr-objcopy -O ihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${PROJECT_NAME}.hex
+#    COMMENT "Создание .hex файла"
+#)
+#
+#add_custom_target(UPLOAD ALL
+#    COMMAND avrdude -c ${AVRDUDE_LOADER} -p ${AVRDUDE_CONTROLER} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -U flash:w:${PROJECT_NAME}.hex:i
+#    DEPENDS ${PROJECT_NAME}.elf
+#    COMMENT "Загрузка прошивки на Arduino"
+#)
+#
+#target_compile_definitions(${PROJECT_NAME}.elf PUBLIC ${AVR_DEFINITIONS})
