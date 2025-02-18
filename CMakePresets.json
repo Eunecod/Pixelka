@@ -24,7 +24,9 @@
       "inherits": "avr-base",
       "hidden": false,
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g"
       }
     },
     {
@@ -33,7 +35,9 @@
       "inherits": "avr-base",
       "hidden": false,
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-Os -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE": "-Os -DNDEBUG"
       }
     }
   ]
