@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: string.h,v 1.19.2.4 2008/12/21 02:37:32 dmix Exp $ */
+/* $Id: string.h 2427 2014-05-01 14:06:03Z amylaar $ */
 
 /*
    string.h
@@ -110,7 +110,7 @@ extern "C" {
 
 extern int ffs (int __val) __ATTR_CONST__;
 extern int ffsl (long __val) __ATTR_CONST__;
-extern int ffsll (long long __val) __ATTR_CONST__;
+__extension__ extern int ffsll (long long __val) __ATTR_CONST__;
 extern void *memccpy(void *, const void *, int, size_t);
 extern void *memchr(const void *, int, size_t) __ATTR_PURE__;
 extern int memcmp(const void *, const void *, size_t) __ATTR_PURE__;
@@ -146,6 +146,12 @@ extern char *strstr(const char *, const char *) __ATTR_PURE__;
 extern char *strtok(char *, const char *);
 extern char *strtok_r(char *, const char *, char **);
 extern char *strupr(char *);
+
+#if 1 /* ??? unimplemented */
+extern int strcoll(const char *s1, const char *s2);
+extern char *strerror(int errnum);
+extern size_t strxfrm(char *dest, const char *src, size_t n);
+#endif
 
 #ifdef __cplusplus
 }

@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom128rfa1.h,v 1.1.2.10 2009/07/01 14:57:41 joerg_wunsch Exp $ */
+/* $Id: iom128rfa1.h 2293 2012-05-22 15:16:53Z joerg_wunsch $ */
 
 /* avr/iom128rfa1.h - definitions for ATmega128RFA1 */
 
@@ -5224,29 +5224,7 @@ struct __reg_TST_RX_LENGTH {
 #define TIMER5_OVF_vect                 _VECTOR(50)
 #define TIMER5_OVF_vect_num             50
 
-/* USART2, Rx Complete */
-#define USART2_RX_vect                  _VECTOR(51)
-#define USART2_RX_vect_num              51
-
-/* USART2 Data register Empty */
-#define USART2_UDRE_vect                _VECTOR(52)
-#define USART2_UDRE_vect_num            52
-
-/* USART2, Tx Complete */
-#define USART2_TX_vect                  _VECTOR(53)
-#define USART2_TX_vect_num              53
-
-/* USART3, Rx Complete */
-#define USART3_RX_vect                  _VECTOR(54)
-#define USART3_RX_vect_num              54
-
-/* USART3 Data register Empty */
-#define USART3_UDRE_vect                _VECTOR(55)
-#define USART3_UDRE_vect_num            55
-
-/* USART3, Tx Complete */
-#define USART3_TX_vect                  _VECTOR(56)
-#define USART3_TX_vect_num              56
+/* Vectors 51 through 56 are reserved (unimplemented UARTs) */
 
 /* TRX24 - PLL lock interrupt */
 #define TRX24_PLL_LOCK_vect             _VECTOR(57)

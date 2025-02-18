@@ -33,7 +33,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE.
 
-  $Id: stdio.h,v 1.29.2.1 2008/02/23 08:59:27 dmix Exp $
+  $Id: stdio.h 2427 2014-05-01 14:06:03Z amylaar $
 */
 
 #ifndef _STDIO_H_
@@ -229,7 +229,7 @@
     arguments of variadic functions on the stack (as opposed to passing
     them in registers for functions that take a fixed number of
     parameters), the ability to pass one parameter less by implying
-    \c stdin will also save some execution time.
+    \c stdin or stdout will also save some execution time.
 */
 
 #if !defined(__DOXYGEN__)
@@ -272,7 +272,7 @@ struct __file {
    \c FILE is the opaque structure that is passed around between the
    various standard IO functions.
 */
-#define FILE	struct __file
+typedef struct __file FILE;
 
 /**
    Stream that will be used as an input stream by the simplified
@@ -644,7 +644,7 @@ extern int	putchar(int __c);
 
 /**
    The function \c printf performs formatted output to stream
-   \c stderr.  See \c vfprintf() for details.
+   \c stdout.  See \c vfprintf() for details.
 */
 extern int	printf(const char *__fmt, ...);
 
@@ -939,6 +939,28 @@ static __inline__ int fflush(FILE *stream __attribute__((unused)))
 {
 	return 0;
 }
+#endif
+
+#if 1 /* ??? unimplemented  */
+#define BUFSIZ 1024
+#define _IONBF 0
+typedef long long fpos_t;
+extern int fgetpos(FILE *stream, fpos_t *pos);
+extern FILE *fopen(const char *path, const char *mode);
+extern FILE *freopen(const char *path, const char *mode, FILE *stream);
+extern FILE *fdopen(int, const char *);
+extern int fseek(FILE *stream, long offset, int whence);
+extern int fsetpos(FILE *stream, fpos_t *pos);
+extern long ftell(FILE *stream);
+extern int fileno(FILE *);
+extern void perror(const char *s);
+extern int remove(const char *pathname);
+extern int rename(const char *oldpath, const char *newpath);
+extern void rewind(FILE *stream);
+extern void setbuf(FILE *stream, char *buf);
+extern int setvbuf(FILE *stream, char *buf, int mode, size_t size);
+extern FILE *tmpfile(void);
+extern char *tmpnam (char *s);
 #endif
 
 #ifdef __cplusplus

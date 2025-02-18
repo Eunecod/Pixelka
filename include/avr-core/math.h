@@ -32,7 +32,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: math.h,v 1.21.2.6 2009/11/29 06:31:27 dmix Exp $ */
+/* $Id: math.h 2428 2014-05-01 14:13:18Z amylaar $ */
 
 /*
    math.h - mathematical functions
@@ -56,7 +56,7 @@
     functions.
 
     \par Notes:
-    - In order to access the functions delcared herein, it is usually
+    - In order to access the functions declared herein, it is usually
       also required to additionally link against the library \c libm.a.
       See also the related \ref faq_libm "FAQ entry".
     - Math functions do not raise exceptions and do not change the
@@ -175,7 +175,7 @@ extern float modff (float __x, float *__iptr);
     The sqrt() function returns the non-negative square root of \a __x.
  */
 extern double sqrt(double __x) __ATTR_CONST__;
-#define sqrtf	sqrt		/**< The alias for sqrt().	*/
+extern float sqrtf (float) __ATTR_CONST__;
 
 /**
     The cbrt() function returns the cube root of \a __x.

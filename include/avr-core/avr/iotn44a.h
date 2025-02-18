@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotn44a.h,v 1.1.2.2 2009/11/02 02:44:17 arcanum Exp $ */
+/* $Id: iotn44a.h 2414 2014-03-21 16:04:00Z pitchumani $ */
 
 /* avr/iotn44a.h - definitions for ATtiny44A */
 
@@ -486,10 +486,12 @@
 #define MCUCR _SFR_IO8(0x35)
 #define ISC00 0
 #define ISC01 1
+#define BODSE 2
 #define SM0 3
 #define SM1 4
 #define SE 5
 #define PUD 6
+#define BODS 7
 
 #define OCR0A _SFR_IO8(0x36)
 #define OCR0A_0 0

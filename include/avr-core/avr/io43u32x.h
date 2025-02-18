@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io43u32x.h,v 1.5.4.1 2009/02/11 18:05:23 arcanum Exp $ */
+/* $Id: io43u32x.h 2434 2014-08-05 06:57:11Z pitchumani $ */
 
 /* avr/io43u32x.h - definitions for AT43USB32x */
 
@@ -425,6 +425,7 @@
 #define    TXB8         0
 
 /* Constants */
+#define    RAMSTART 0x60
 #define    RAMEND   0x025F     /*Last On-Chip SRAM Location*/
 #define    XRAMEND  RAMEND
 #define    E2END    0x0000
