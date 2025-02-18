@@ -18,7 +18,8 @@ set(AVR_DEFINITIONS
 
 
 add_executable(${PROJECT_NAME}.elf "Pixelka.cpp")
-target_sources_directories(${PROJECT_NAME}.elf "core/cores/arduino")
+target_sources(${PROJECT_NAME}.elf PRIVATE "core/cores/arduino/HardwareSerial.cpp")
+#target_sources_directories(${PROJECT_NAME}.elf "core/cores/arduino/HardwareSerial.cpp")
 
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino)
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/avr-core)

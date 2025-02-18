@@ -10,7 +10,6 @@
       "cacheVariables": {
         "CMAKE_SYSTEM_NAME": "Generic",
         "CMAKE_SYSTEM_PROCESSOR": "AVR",
-        "CMAKE_C_COMPILER": "avr-gcc.exe",
         "CMAKE_CXX_COMPILER": "avr-g++.exe",
         "AVRDUDE_PORT": "COM6",
         "AVRDUDE_BAUD": "57600",
@@ -25,8 +24,7 @@
       "hidden": false,
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O2 -Wall -Wcpp"
       }
     },
     {
@@ -36,8 +34,7 @@
       "hidden": false,
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_C_FLAGS_RELEASE": "-Os -DNDEBUG",
-        "CMAKE_CXX_FLAGS_RELEASE": "-Os -DNDEBUG"
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2 -Wall -Wcpp -DNDEBUG"
       }
     }
   ]

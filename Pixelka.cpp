@@ -2,7 +2,7 @@
 
 
 void setup() {
-    pinMode(13, OUTPUT); // Встроенный светодиод на Arduino
+    pinMode(13, OUTPUT);
 }
 
 void loop() {
@@ -13,7 +13,6 @@ void loop() {
 }
 
 int main() {
-    //init();  // Обязательно для Arduino
     setup();
     for (;;) {
         loop();
