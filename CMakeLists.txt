@@ -5,24 +5,28 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 function(target_sources_directories target directories)
-    file(GLOB_RECURSE files "${CMAKE_CURRENT_SOURCE_DIR}/${directories}/*.cpp")
+    file(GLOB_RECURSE files "${CMAKE_CURRENT_SOURCE_DIR}/${directories}/*.c*")
     target_sources(${target} PRIVATE ${files})
 endfunction()
 
 set(AVR_DEFINITIONS
+    "ARDUINO=1"
     "__AVR_ATmega328__"
     "F_CPU=16000000UL"
 )
 
+set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
+file(GLOB ARDUINO_SOURCES
+    "${ARDUINO_CORE_PATH}/*.c*"
+)
 
 
-
-add_executable(${PROJECT_NAME}.elf "Pixelka.cpp")
-target_sources(${PROJECT_NAME}.elf PRIVATE "core/cores/arduino/HardwareSerial.cpp")
-#target_sources_directories(${PROJECT_NAME}.elf "core/cores/arduino/HardwareSerial.cpp")
+add_executable(${PROJECT_NAME}.elf "Pixelka.cpp" ${ARDUINO_SOURCES})
 
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino)
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/avr-core)
+
+target_link_libraries(${PROJECT_NAME}.elf -lm -lc)
 
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
     COMMAND avr-objcopy -O ihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${PROJECT_NAME}.hex
