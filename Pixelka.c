@@ -1,21 +1,10 @@
 #include <Arduino.h>
 
 
-void setup() {
-    pinMode(13, OUTPUT);
+void setup(void) {
+
 }
 
-void loop() {
-    digitalWrite(13, HIGH);
-    delay(1000);
-    digitalWrite(13, LOW);
-    delay(1000);
-}
+void loop(void) {
 
-int main() {
-    setup();
-    for (;;) {
-        loop();
-    }
-    return 0;
 }

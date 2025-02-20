@@ -1,27 +1,27 @@
 ﻿cmake_minimum_required(VERSION 3.15)
-project("Pixelka" LANGUAGES C)
+project("Pixelka" LANGUAGES C CXX ASM)
 
-function(target_sources_directories target directories)
-    file(GLOB_RECURSE files "${CMAKE_CURRENT_SOURCE_DIR}/${directories}/*.c*")
-    target_sources(${target} PRIVATE ${files})
+function(target_sources_directories TARGET DIRECTORIES EXTENSIONS)
+    file(GLOB_RECURSE files "${DIRECTORIES}/${EXTENSIONS}")
+    target_sources(${TARGET} PRIVATE ${files})
 endfunction()
 
 set(AVR_DEFINITIONS
-    "ARDUINO=1"
     "__AVR_ATmega328__"
     "F_CPU=16000000UL"
+    "ARDUINO=1"
 )
 
 set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
-file(GLOB ARDUINO_SOURCES
-    "${ARDUINO_CORE_PATH}/*.c"
-)
 
 
-add_executable(${PROJECT_NAME}.elf "Pixelka.c" ${ARDUINO_SOURCES})
+add_executable(${PROJECT_NAME}.elf "Pixelka.c")
+target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "main.cpp")
+target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.c")
+target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.S")
 
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino)
-target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/avr-core)
+target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/variants/standard)
 
 target_link_libraries(${PROJECT_NAME}.elf -lm -lc)
 
@@ -31,7 +31,7 @@ add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
 )
 
 add_custom_target(UPLOAD ALL
-    COMMAND avrdude -c ${AVRDUDE_LOADER} -p ${AVRDUDE_CONTROLER} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -U flash:w:${PROJECT_NAME}.hex:i
+    COMMAND avrdude -c ${AVRDUDE_LOADER} -p ${AVRDUDE_CONTROLER} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -U flash:w:${PROJECT_NAME}.hex:i -v -v -v -v
     DEPENDS ${PROJECT_NAME}.elf
     COMMENT "Загрузка прошивки на Arduino"
 )
