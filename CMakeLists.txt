@@ -1,8 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.15)
-project("Pixelka" LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project("Pixelka" LANGUAGES C)
 
 function(target_sources_directories target directories)
     file(GLOB_RECURSE files "${CMAKE_CURRENT_SOURCE_DIR}/${directories}/*.c*")
@@ -17,11 +14,11 @@ set(AVR_DEFINITIONS
 
 set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
 file(GLOB ARDUINO_SOURCES
-    "${ARDUINO_CORE_PATH}/*.c*"
+    "${ARDUINO_CORE_PATH}/*.c"
 )
 
 
-add_executable(${PROJECT_NAME}.elf "Pixelka.cpp" ${ARDUINO_SOURCES})
+add_executable(${PROJECT_NAME}.elf "Pixelka.c" ${ARDUINO_SOURCES})
 
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino)
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/avr-core)
