@@ -13,8 +13,8 @@
         "CMAKE_C_COMPILER": "avr-gcc.exe",
         "CMAKE_CXX_COMPILER": "avr-g++.exe",
         "AVRDUDE_PORT": "COM6",
-        "AVRDUDE_BAUD": "115200",
-        "AVRDUDE_CONTROLER": "m328p",
+        "AVRDUDE_BAUD": "57600",
+        "AVRDUDE_CONTROLER": "atmega328p",
         "AVRDUDE_LOADER": "arduino"
       }
     },

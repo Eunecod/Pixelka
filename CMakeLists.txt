@@ -8,8 +8,8 @@ endfunction()
 
 set(AVR_DEFINITIONS
     "__AVR_ATmega328__"
+    "mmcu=atmega328p"
     "F_CPU=16000000UL"
-    "ARDUINO=1"
 )
 
 set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
@@ -31,7 +31,7 @@ add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
 )
 
 add_custom_target(UPLOAD ALL
-    COMMAND avrdude -c ${AVRDUDE_LOADER} -p ${AVRDUDE_CONTROLER} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -U flash:w:${PROJECT_NAME}.hex:i -v -v -v -v
+    COMMAND avrdude -c ${AVRDUDE_LOADER} -v -p ${AVRDUDE_CONTROLER} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -U flash:w:${PROJECT_NAME}.hex:i
     DEPENDS ${PROJECT_NAME}.elf
     COMMENT "Загрузка прошивки на Arduino"
 )
