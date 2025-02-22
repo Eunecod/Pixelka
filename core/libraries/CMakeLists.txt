@@ -1,1 +1,6 @@
+add_subdirectory(Adafruit-GFX)
+add_subdirectory(Adafruit_BusIO)
+add_subdirectory(Adafruit_SSD1306)
 add_subdirectory(SoftwareSerial)
+add_subdirectory(SPI)
+add_subdirectory(Wire)
