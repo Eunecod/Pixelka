@@ -56,7 +56,7 @@ set(AVRDUDE_BAUD    57600)
 set(AVRDUDE_MCU     ${MCU})
 
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
-    COMMAND avr-size --format=avr --mcu=${MCU} $<TARGET_FILE:${PROJECT_NAME}.elf>
+    COMMAND avr-size --format=sysv $<TARGET_FILE:${PROJECT_NAME}.elf>
     COMMENT "Информация о размере программы"
 )
 
