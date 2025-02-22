@@ -12,20 +12,16 @@ set(MCU     atmega328p)
 set(F_CPU   16000000UL)
 set(BOARD   __AVR_ATmega328__)
 
-set(CMAKE_C_FLAGS   "-mmcu=${MCU} -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -Os -flto -Wall -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
-set(CMAKE_CXX_FLAGS "-mmcu=${MCU} -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -Os -flto -Wall -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_FLAGS   "-mmcu=${MCU} -w -Os -ffunction-sections -fdata-sections -fno-exceptions -fno-threadsafe-statics -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
+set(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_C_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-mmcu=${MCU} -Wl,--gc-sections -Wl,--relax -flto")
 
 set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
 
 
 
 add_executable(${PROJECT_NAME}.elf "Pixelka.cpp")
-target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.cpp")
-target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.c")
-target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.S")
+target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "main.cpp")
 
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino)
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/core/variants/eightanaloginputs)

@@ -5,8 +5,9 @@ set(MCU     atmega328p)
 set(F_CPU   16000000UL)
 set(BOARD   __AVR_ATmega328__)
 
-set(CMAKE_C_FLAGS   "-mmcu=${MCU} -Os -Wall -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
-set(CMAKE_CXX_FLAGS "-mmcu=${MCU} -std=c++11 -Os -Wall -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
+set(CMAKE_C_FLAGS   "-mmcu=${MCU} -w -Os -ffunction-sections -fdata-sections -fno-exceptions -fno-threadsafe-statics -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
+set(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_C_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-mmcu=${MCU} -Wl,--gc-sections -Wl,--relax -flto")
 
 
 
