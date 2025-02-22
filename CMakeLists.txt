@@ -55,6 +55,11 @@ set(AVRDUDE_PORT    COM6)
 set(AVRDUDE_BAUD    57600)
 set(AVRDUDE_MCU     ${MCU})
 
+add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
+    COMMAND avr-size --format=avr --mcu=${MCU} $<TARGET_FILE:${PROJECT_NAME}.elf>
+    COMMENT "Информация о размере программы"
+)
+
 add_custom_target(UPLOAD ALL
     COMMAND avrdude -c ${AVRDUDE_LOADER} -p ${AVRDUDE_MCU} -P ${AVRDUDE_PORT} -b ${AVRDUDE_BAUD} -v -V -D -U flash:w:${PROJECT_NAME}.hex:i
     DEPENDS ${PROJECT_NAME}.elf
