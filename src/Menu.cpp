@@ -39,5 +39,5 @@ int Menu::GetIndex() {
 }
 
 int Menu::GetSize() {
-	return menu_size - 1;
+	return menu_size;
 }
