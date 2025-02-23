@@ -16,7 +16,7 @@
     },
     {
       "name": "Debug",
-      "displayName": "x64 Debug",
+      "displayName": "Debug build & upload",
       "inherits": "avr-base",
       "hidden": false,
       "cacheVariables": {
@@ -25,7 +25,7 @@
     },
     {
       "name": "Release",
-      "displayName": "x64 Release",
+      "displayName": "Release build & upload",
       "inherits": "avr-base",
       "hidden": false,
       "cacheVariables": {
