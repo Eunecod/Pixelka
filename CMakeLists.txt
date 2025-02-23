@@ -17,6 +17,7 @@ set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-mmcu=${MCU} -Wl,--gc-sections -Wl,--relax -
 set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
 set(ARDUINO_VARIANT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/variants/eightanaloginputs")
 set(ARDUINO_LIBRARY_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/libraries")
+set(ARDUINO_ASSETS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/assets")
 
 
 
@@ -26,12 +27,12 @@ target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.cpp")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.c")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.S")
 
-include_directories(${ARDUINO_CORE_PATH} ${ARDUINO_VARIANT_PATH} ${ARDUINO_LIBRARY_PATH}/SoftwareSerial/src 
+include_directories(${ARDUINO_CORE_PATH} ${ARDUINO_VARIANT_PATH} ${ARDUINO_ASSETS_PATH} ${ARDUINO_LIBRARY_PATH}/SoftwareSerial/src 
     ${ARDUINO_LIBRARY_PATH}/Adafruit_SSD1306 ${ARDUINO_LIBRARY_PATH}/Adafruit-GFX ${ARDUINO_LIBRARY_PATH}/Adafruit-GFX/Fonts
     ${ARDUINO_LIBRARY_PATH}/Adafruit_BusIO ${ARDUINO_LIBRARY_PATH}/SPI/src ${ARDUINO_LIBRARY_PATH}/Wire/src)
 
 target_link_libraries(${PROJECT_NAME}.elf -lm -lc SoftwareSerial Adafruit_SSD1306 Adafruit-GFX Adafruit_BusIO SPI Wire)
-target_compile_definitions(${PROJECT_NAME}.elf PUBLIC UBRRH __AVR__ __GNUC__ __attribute__)
+target_compile_definitions(${PROJECT_NAME}.elf PUBLIC UBRRH __AVR__ __GNUC__)
 
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
     COMMAND avr-objcopy -O ihex -R .eeprom $<TARGET_FILE:${PROJECT_NAME}.elf> ${PROJECT_NAME}.hex
