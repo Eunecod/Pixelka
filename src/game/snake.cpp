@@ -3,16 +3,27 @@
 
 Snake::Snake(Adafruit_SSD1306* display, JoyInput* joystik, uint8_t buzzer_pin, uint8_t randomseed_pin)
     : Game(display, joystik), buzzer_pin(buzzer_pin), randomseed_pin(randomseed_pin) {
+    
+    display->clearDisplay();
+    display->setTextSize(1);
     if (!OnInitGame()) {
-        display->clearDisplay();
-
-            display->setTextSize(1);
             display->setCursor(0, 0);
             display->println(F("Error: not init load game."));
 
         display->display();
         delay(1500);
     }
+
+        int16_t x_pos, y_pos;
+        uint16_t text_width, text_height;
+
+        const char* title = "Snake";
+        display->getTextBounds(title, 0, 0, &x_pos, &y_pos, &text_width, &text_height);
+        display->setCursor((display->width() - text_width) / 2, (display->height() - text_height) / 2);
+        display->println(title);
+    
+    display->display();
+    delay(1000);
 }
 
 bool Snake::OnInitGame() {
