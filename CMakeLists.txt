@@ -24,6 +24,7 @@ set(ARDUINO_ASSETS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/assets")
 
 add_executable(${PROJECT_NAME}.elf "Pixelka.cpp")
 target_sources_directories(${PROJECT_NAME}.elf "${CMAKE_CURRENT_SOURCE_DIR}/src" "*.cpp")
+target_sources_directories(${PROJECT_NAME}.elf "${CMAKE_CURRENT_SOURCE_DIR}/src/game" "*.cpp")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.cpp")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.c")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.S")
