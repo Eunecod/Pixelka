@@ -1,4 +1,4 @@
-#include <Menu.h>
+#include <menu.h>
 
 
 Menu::Menu() {}
@@ -34,10 +34,10 @@ const char* Menu::GetSelection() {
 	return menu_items[menu_index];
 }
 
-int Menu::GetIndex() {
+int8_t Menu::GetIndex() {
 	return menu_index;
 }
 
-int Menu::GetSize() {
+int8_t Menu::GetSize() {
 	return menu_size;
 }
