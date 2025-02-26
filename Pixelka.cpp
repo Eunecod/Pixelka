@@ -112,8 +112,8 @@ void DrawMenu() {
 void HandleMenuSelection() {
     switch (menu.GetIndex()) {
         case 0: {         
-            //Snake snake(&display, &joystick, BUZZER, GENERATOR);
-            //snake.RenderGame();
+            Snake snake(&display, &joystick, BUZZER, GENERATOR);
+            snake.RenderGame();
             break;
         }
         case 1: {
