@@ -2,14 +2,14 @@
 
 
 typedef struct axis {
-	uint8_t x;
-	uint8_t y;
+	int x;
+	int y;
 } axis;
 
 class JoyInput {
 private:
-	uint8_t x_value;
-	uint8_t y_value;
+	int x_value;
+	int y_value;
 
 	uint8_t joystick_x			= -1;
 	uint8_t joystick_y			= -1;
