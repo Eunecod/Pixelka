@@ -1,14 +1,14 @@
 #pragma once
 #include <Arduino.h>
 
-#define STACK_MENU 16
+#define STACK_MENU 3
 
 
 class Menu {
 private:
 	int8_t menu_size = 0;
 	int8_t menu_index = 0;
-	const char* menu_items[STACK_MENU] = { nullptr };
+	const char* menu_items[STACK_MENU];
 
 public:
 	Menu();
