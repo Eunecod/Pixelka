@@ -7,10 +7,6 @@
 
 class Snake : Game {
 private:
-	typedef struct coord {
-		uint8_t x;
-		uint8_t y;
-	} coord;
 
     enum DIRECTION : uint8_t {
         STOP = 0, LEFT, RIGHT, UP, DOWN

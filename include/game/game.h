@@ -11,6 +11,11 @@ public:
 	Game(Adafruit_SSD1306* display, JoyInput* joystik) : display(display), joystik(joystik) {}
 	~Game() = default;
 
+	typedef struct coord {
+		uint8_t x;
+		uint8_t y;
+	} coord;
+
 protected:
 	Adafruit_SSD1306* display = nullptr;
 	JoyInput* joystik = nullptr;

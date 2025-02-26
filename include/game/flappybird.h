@@ -9,10 +9,6 @@
 
 class FlappyBird : Game {
 private:
-    typedef struct coord {
-        uint8_t x;
-        uint8_t y;
-    } coord;
 
     typedef struct tube {
         coord position;
