@@ -2,7 +2,7 @@
 #include <JoyInput.h>
 
 
-JoyInput::JoyInput(int joystick_x, int joystick_y, int joystick_button) 
+JoyInput::JoyInput(uint8_t joystick_x, uint8_t joystick_y, uint8_t joystick_button)
 	: joystick_x(joystick_x), joystick_y(joystick_y), joystick_button(joystick_button)
 {}
 

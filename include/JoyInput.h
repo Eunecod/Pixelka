@@ -1,23 +1,22 @@
-#ifndef JOYINPUT_H
-#define JOYINPUT_H
+#pragma once
 
 
 typedef struct axis {
-	int x;
-	int y;
+	uint8_t x;
+	uint8_t y;
 } axis;
 
 class JoyInput {
 private:
-	int x_value;
-	int y_value;
+	uint8_t x_value;
+	uint8_t y_value;
 
-	int joystick_x			= -1;
-	int joystick_y			= -1;
-	int joystick_button		= -1;
+	uint8_t joystick_x			= -1;
+	uint8_t joystick_y			= -1;
+	uint8_t joystick_button		= -1;
 
 public:
-	JoyInput(int joystick_x, int joystick_y, int joystick_button);
+	JoyInput(uint8_t joystick_x, uint8_t joystick_y, uint8_t joystick_button);
 
 	axis GetAxis();
 	bool TriggerLeft();
@@ -25,8 +24,4 @@ public:
 	bool TriggerUp();
 	bool TriggerDown();
 	bool Pushbutton();
-	
-protected:
 };
-
-#endif // JOYINPUT_H
