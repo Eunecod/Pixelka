@@ -21,8 +21,8 @@ bool JoyInput::Trigger(JoyInput::TRIGGER direction) const {
 	case JoyInput::RIGHT:	return analogRead(joystick_x) > 900;
 	case JoyInput::UP:		return analogRead(joystick_y) < 100;
 	case JoyInput::DOWN:	return analogRead(joystick_y) > 900;
-		default:
-			return false;
+	default:
+		return false;
 	}
 }
 
