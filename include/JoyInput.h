@@ -7,21 +7,21 @@ typedef struct axis {
 } axis;
 
 class JoyInput {
-private:
-	int x_value;
-	int y_value;
-
-	uint8_t joystick_x			= -1;
-	uint8_t joystick_y			= -1;
-	uint8_t joystick_button		= -1;
+	
+	uint8_t joystick_x;
+	uint8_t joystick_y;
+	uint8_t joystick_button;
 
 public:
-	JoyInput(uint8_t joystick_x, uint8_t joystick_y, uint8_t joystick_button);
+	JoyInput(const  uint8_t joystick_x, const  uint8_t joystick_y, const  uint8_t joystick_button);
+	~JoyInput() = default;
 
-	axis GetAxis();
-	bool TriggerLeft();
-	bool TriggerRight();
-	bool TriggerUp();
-	bool TriggerDown();
-	bool Pushbutton();
+	enum TRIGGER : uint8_t {
+		LEFT, RIGHT, UP, DOWN,
+	};
+
+	axis GetAxis() const;
+	bool Trigger(TRIGGER direction) const;
+	bool Push() const;
+
 };
