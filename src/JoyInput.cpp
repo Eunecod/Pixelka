@@ -24,16 +24,29 @@ bool JoyInput::Trigger(JoyInput::TRIGGER direction) const {
 		return analogRead(joystick_x) > 900;
 
 	case JoyInput::UP:		
-		return analogRead(joystick_y) < 100;
+		return analogRead(joystick_y) > 900;
 
 	case JoyInput::DOWN:	
-		return analogRead(joystick_y) > 900;
+		return analogRead(joystick_y) < 100;
 
 	default:
 		return false;
 	}
 }
 
-bool JoyInput::Push() const {
-	return digitalRead(joystick_button) == LOW;
+bool JoyInput::Push(bool use_debounce) {
+	unsigned long current_time = millis();
+	if (!use_debounce) {
+		return digitalRead(joystick_button) == LOW;
+	}
+
+	if (digitalRead(joystick_button) == LOW) {
+		if ((current_time - debounce_time) > DEBOUNCE) {
+			debounce_time = current_time;
+
+			return true;
+		}
+	}
+
+	return false;
 }
