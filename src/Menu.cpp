@@ -1,43 +1,26 @@
 #include <menu.h>
 
 
-Menu::Menu() {}
-
-void Menu::AddOption(const char* option) {
-	if (menu_size == STACK_MENU) {
-		return;
+void Menu::Next() {
+	if (index < size - 1) {
+		index++;
 	}
-
-	menu_items[menu_size] = option;
-	++menu_size;
 }
 
-bool Menu::Next() {
-	if (menu_index < menu_size - 1) {
-		++menu_index;
-		return true;
+void Menu::Prev() {
+	if (index > 0) {
+		index--;
 	}
-
-	return false;
 }
 
-bool Menu::Prev() {
-	if (menu_index != 0) {
-		--menu_index;
-		return true;
-	}
-
-	return false;
+const char* Menu::GetItems() const {
+	return items[index];
 }
 
-const char* Menu::GetSelection() {
-	return menu_items[menu_index];
+int8_t Menu::GetIndex() const {
+	return index;
 }
 
-int8_t Menu::GetIndex() {
-	return menu_index;
-}
-
-int8_t Menu::GetSize() {
-	return menu_size;
+int8_t Menu::GetSize() const {
+	return size;
 }

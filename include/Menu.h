@@ -1,22 +1,22 @@
 #pragma once
 #include <Arduino.h>
-
-#define STACK_MENU 3
+#include <avr/pgmspace.h>
 
 
 class Menu {
-private:
-	int8_t menu_size = 0;
-	int8_t menu_index = 0;
-	const char* menu_items[STACK_MENU];
+
+	static constexpr uint8_t size = 5;
+	const char* items[size] PROGMEM = { "Snake", "Flappy bird", "Duck hunt", "Leader board", "GitHub"};
+	int8_t index = 0;
 
 public:
-	Menu();
-	void AddOption(const char* option);
-	bool Next();
-	bool Prev();
+	Menu() = default;
+	~Menu() = default;
+
+	void Next();
+	void Prev();
 	
-	const char* GetSelection();
-	int8_t GetIndex();
-	int8_t GetSize();
+	const char* GetItems() const;
+	int8_t GetIndex() const;
+	int8_t GetSize() const;
 };
