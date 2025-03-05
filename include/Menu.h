@@ -6,7 +6,7 @@
 class Menu {
 
 	static constexpr uint8_t size = 5;
-	const char* items[size] PROGMEM = { "Snake", "Flappy bird", "Duck hunt", "Leader board", "GitHub"};
+	static const char* const items[];
 	int8_t index = 0;
 
 public:

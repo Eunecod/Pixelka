@@ -1,6 +1,8 @@
 #include <menu.h>
 
 
+const char* const Menu::items[] PROGMEM = { "Snake", "Flappy bird", "Duck hunt", "Leader board", "GitHub" };
+
 void Menu::Next() {
 	if (index < size - 1) {
 		index++;
