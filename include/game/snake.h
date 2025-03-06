@@ -1,38 +1,32 @@
-#include <Adafruit_SSD1306.h>
-#include <Adafruit_GFX.h>
-#include <JoyInput.h>
+#pragma once
+#include <game/Game.h>
 
-#include <game/game.h>
+#define SIZE_CELL 8
 
 
 class Snake : Game {
-private:
 
     enum DIRECTION : uint8_t {
         STOP = 0, LEFT, RIGHT, UP, DOWN
     } direction;
-    
-    bool game_over = false;
     
     char message_score[16];
     uint8_t score = 0;
     coord fruit = { 0, 0 };
 
     coord head_snake = { 0, 0 };
-    coord snake_body[32];
+    coord snake_body[64];
     uint8_t snake_size = 0;
-
-    uint8_t buzzer_pin = 0;
-    uint8_t randomseed_pin = 0;
 
     void EatFruit();
     void SpawnFruit();
     void DetectCollision();
     
 public:
-    Snake(Adafruit_SSD1306* display, JoyInput* joystik, uint8_t buzzer_pin, uint8_t randomseed_pin);
-    
-	bool OnInitGame();
-	void RenderGame();
+    Snake(Adafruit_SSD1306* display, JoyInput* joystik, uint8_t buzzer);
+    ~Snake() = default;
+
+	void OnInitGame();
+	void StartGame();
 	void OnExitGame();
 };
