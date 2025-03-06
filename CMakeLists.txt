@@ -8,12 +8,13 @@ endfunction()
 
 set(MCU     atmega328p)
 set(F_CPU   16000000UL)
-set(BOARD   __AVR_ATmega328__)
+set(BOARD   __AVR_ATmega328P__)
 
-set(CMAKE_C_FLAGS   "-mmcu=${MCU} -w -Os -ffunction-sections -fdata-sections -fno-exceptions -fno-threadsafe-statics -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
-set(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_C_FLAGS}")
+set(CMAKE_C_FLAGS   "-mmcu=${MCU} -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -DF_CPU=${F_CPU} -D${BOARD} -DARDUINO=10607")
+set(CMAKE_CXX_FLAGS "-std=gnu++11 -fno-threadsafe-statics ${CMAKE_C_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-mmcu=${MCU} -Wl,--gc-sections -Wl,--relax -flto")
 
+set(AVR_PATH "C:/Program Files/avr/avr/include")
 set(ARDUINO_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/cores/arduino")
 set(ARDUINO_VARIANT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/variants/eightanaloginputs")
 set(ARDUINO_LIBRARY_PATH "${CMAKE_CURRENT_SOURCE_DIR}/core/libraries")
@@ -29,7 +30,7 @@ target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.cpp")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.c")
 target_sources_directories(${PROJECT_NAME}.elf ${ARDUINO_CORE_PATH} "*.S")
 
-include_directories(${ARDUINO_CORE_PATH} ${ARDUINO_VARIANT_PATH} ${ARDUINO_ASSETS_PATH} ${ARDUINO_LIBRARY_PATH}/SoftwareSerial/src 
+include_directories(${AVR_PATH} ${ARDUINO_CORE_PATH} ${ARDUINO_VARIANT_PATH} ${ARDUINO_ASSETS_PATH} ${ARDUINO_LIBRARY_PATH}/SoftwareSerial/src 
     ${ARDUINO_LIBRARY_PATH}/Adafruit_SSD1306 ${ARDUINO_LIBRARY_PATH}/Adafruit-GFX ${ARDUINO_LIBRARY_PATH}/Adafruit-GFX/Fonts
     ${ARDUINO_LIBRARY_PATH}/Adafruit_BusIO ${ARDUINO_LIBRARY_PATH}/SPI/src ${ARDUINO_LIBRARY_PATH}/Wire/src
     ${CMAKE_CURRENT_SOURCE_DIR}/include)
