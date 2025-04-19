@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.15)
-project("Pixelka" LANGUAGES C CXX ASM)
+include(cmake/avr-toolchain.cmake)
 
-include(cmake/avr-gcc-toolchain.cmake)
+project(Pixelka C CXX ASM)
 
 
-add_executable(${PROJECT_NAME}.elf "Pixelka.cpp")
+add_executable(${PROJECT_NAME}.elf Pixelka.cpp)
+
+add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
+    COMMAND avr-size $<TARGET_FILE:${PROJECT_NAME}.elf>
+    COMMENT "Размер firmware:"
+)
